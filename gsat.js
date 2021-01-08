@@ -17,8 +17,8 @@ const fs = require("fs");
 
 // change filename here to read cnf data from other file
 //const cnfFileName = "./cnf/simple_v3_c2.cnf";
-//const cnfFileName = "./cnf/quinn.cnf";
-const cnfFileName = "./cnf/zebra_v155_c1135.cnf";
+const cnfFileName = "./cnf/quinn.cnf";
+//const cnfFileName = "./cnf/zebra_v155_c1135.cnf";
 
 
 //checks if it is a solution for given CNF
@@ -228,25 +228,44 @@ function main(totalOfTests = 10, maxTries = 3, maxFlips = 10) {
   });
 }
 
-//Generate tests from cnf file with diferent maxFlips and maxTries and write results in a csv file
-function mainFromFile(maxTries = 5, maxFlips = 1000) {
+// Generate tests from cnf file with diferent maxFlips and maxTries and write results in a csv file
+// Initial maxTries and maxFlips will be incremented (+1, *2) in each new test
+function mainFromFile(totalOfTests = 100, maxTries = 5, maxFlips = 1000) {
   const cnf = readCnfFromFile(cnfFileName);  
   const expression = getExpression(cnf);
-  const start = performance.now();
-  const solution = gsat(cnf, maxTries, maxFlips);
-  const end = performance.now();
+  // console.log("Expression: ", expression);
 
+  const stream = fs.createWriteStream("results_readFromFile.csv");
 
+  stream.once("open", () => {
+    stream.write(`Filename: ${cnfFileName} \n`);
+    stream.write(`Expression: ${expression} \n`);
+    stream.write(
+      "Test number,Execution time (ms),Solution,Flips,Tries\n"
+    );
 
-      //Uncomment this line to print results in terminal
-       //console.log(`Test ${i + 1}`);
-       //console.log("Clause size:", clauseSize);
-       //console.log("Clause number:", clauseNumber);
-       console.log("Expression: ", expression);
-       console.log("Solution: ", JSON.stringify(solution.solution));
-       console.log("Flips: ", solution.flips);
-       console.log(`Execution time: ${end - start} ms`);
+    for (let i = 0; i < totalOfTests; i++) {
+        const start = performance.now();
+        const solution = gsat(cnf, maxTries + i, maxFlips * (i+1));
+        const end = performance.now();
 
+        stream.write(
+          `${i + 1},${end - start},"${
+            solution.solution
+          }",${solution.flips},${solution.tries}\n`
+        );
+
+        //Uncomment this line to print results in terminal
+        console.log(`Test ${i + 1}`);
+        console.log("Solution: ", JSON.stringify(solution.solution));
+        console.log("Flips: ", solution.flips);
+        console.log("Tries: ", solution.tries);
+        console.log(`Execution time: ${end - start} ms`);
+
+    }
+
+    stream.end();
+  });
 
 }
 
