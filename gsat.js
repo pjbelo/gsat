@@ -11,6 +11,16 @@ To generate lighter csv files:
 - Remove or comment 'expression' on lines 126,134,141
 */
 
+
+const { performance } = require("perf_hooks");
+const fs = require("fs");
+
+// change filename here to read cnf data from other file
+//const cnfFileName = "./cnf/simple_v3_c2.cnf";
+const cnfFileName = "./cnf/quinn.cnf";
+//const cnfFileName = "./cnf/zebra_v155_c1135.cnf";
+
+
 //checks if it is a solution for given CNF
 function isSolution(solution, cnf) {
   let isExpressionTrue = true;
@@ -114,8 +124,70 @@ function getExpression(cnf) {
     .join("∧");
 }
 
-const { performance } = require("perf_hooks");
-const fs = require("fs");
+
+
+// Read cnf from file
+function readCnfFromFile(cnfFileName) {
+  let cnf = [];
+  let clause;
+  let clauseNumber = 0;
+  let numberOfVariables;
+  let numberOfClauses;
+  
+  let lines = fs.readFileSync(cnfFileName).toString().split(/\n/);
+  //console.log(lines);
+  lines.forEach((line => {
+
+    if (line[0]=="c") // comment lines
+    {
+      console.log(line);
+    } 
+    else if(line[0]=="p") // header line
+    {
+      let header = line.split(" ");
+      numberOfVariables = header[2];
+      numberOfClauses = header[3];
+
+      console.log(`numberOfVariables: ${numberOfVariables}`);
+      console.log(`numberOfClauses: ${numberOfClauses}`);
+
+    } 
+    else // clauses
+    {
+      //console.log(line);
+
+      clause = [];
+      for (let i = 0; i < numberOfVariables; i++) {
+        clause[i]=0;
+      }
+
+      let cnfClause = line.split(" ");
+      cnfClause.forEach((variable) => {
+        if (variable > 0)
+        {
+          clause[variable-1] = 1;
+        }
+        else if (variable < 0)
+        {
+          clause[(-1 * variable) -1] = -1;
+        }
+      });
+      if (clauseNumber < numberOfClauses)
+      {
+        cnf.push(clause);
+      }
+      clauseNumber ++;
+    }
+
+  }));
+
+  //console.log("cnf:");
+  //console.log(cnf);
+
+  return cnf;
+}
+
+
 
 //Generate tests with random clause size and clause number and write results in a csv file
 function main(totalOfTests = 10, maxTries = 3, maxFlips = 10) {
@@ -156,4 +228,46 @@ function main(totalOfTests = 10, maxTries = 3, maxFlips = 10) {
   });
 }
 
+// Generate tests from cnf file with diferent maxFlips and maxTries and write results in a csv file
+// Initial maxTries and maxFlips will be incremented (+1, *2) in each new test
+function mainFromFile(totalOfTests = 100, maxTries = 5, maxFlips = 1000) {
+  const cnf = readCnfFromFile(cnfFileName);  
+  const expression = getExpression(cnf);
+  // console.log("Expression: ", expression);
+
+  const stream = fs.createWriteStream("results_readFromFile.csv");
+
+  stream.once("open", () => {
+    stream.write(`Filename: ${cnfFileName} \n`);
+    stream.write(`Expression: ${expression} \n`);
+    stream.write(
+      "Test number,Execution time (ms),Solution,Flips,Tries\n"
+    );
+
+    for (let i = 0; i < totalOfTests; i++) {
+        const start = performance.now();
+        const solution = gsat(cnf, maxTries + i, maxFlips * (i+1));
+        const end = performance.now();
+
+        stream.write(
+          `${i + 1},${end - start},"${
+            solution.solution
+          }",${solution.flips},${solution.tries}\n`
+        );
+
+        //Uncomment this line to print results in terminal
+        console.log(`Test ${i + 1}`);
+        console.log("Solution: ", JSON.stringify(solution.solution));
+        console.log("Flips: ", solution.flips);
+        console.log("Tries: ", solution.tries);
+        console.log(`Execution time: ${end - start} ms`);
+
+    }
+
+    stream.end();
+  });
+
+}
+
 main();
+mainFromFile();
