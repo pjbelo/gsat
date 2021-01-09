@@ -1,0 +1,11 @@
+Test number,Execution time (ms),Clause number,Clause size,Solution,Mutations
+1,0.442111998796463,7,4,"no satisfying assignment found",10
+2,0.27438201010227203,9,7,"no satisfying assignment found",10
+3,0.051587000489234924,14,14,"no satisfying assignment found",10
+4,0.1228879988193512,37,20,"no satisfying assignment found",10
+5,0.3057979941368103,39,45,"no satisfying assignment found",10
+6,0.0415010005235672,1,37,"no satisfying assignment found",10
+7,0.8460540026426315,36,67,"no satisfying assignment found",10
+8,0.039432987570762634,7,12,"no satisfying assignment found",10
+9,0.053902000188827515,3,45,"no satisfying assignment found",10
+10,0.2873840034008026,86,20,"no satisfying assignment found",10
