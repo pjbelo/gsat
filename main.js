@@ -14,7 +14,7 @@ const sat = require("./sat");
 
 //Generate tests for fisrt aproach of gsat with random clause size and clause number and write results in a csv file
 function testRandomGsat(totalOfTests = 100, maxTries = 3, maxFlips = 10) {
-  const stream = fs.createWriteStream("results.csv");
+  const stream = fs.createWriteStream("./results/resultsGsat.csv");
 
   stream.once("open", () => {
     stream.write(
@@ -53,7 +53,7 @@ function testRandomGsat(totalOfTests = 100, maxTries = 3, maxFlips = 10) {
 
 //Generate tests for genetic aproach with random clause size and clause number and write results in a csv file
 function testRandomGenetic(totalOfTests = 100, maxMutations = 3, popSize = 10) {
-  const stream = fs.createWriteStream("resultsGenetic.csv");
+  const stream = fs.createWriteStream("./results/resultsGenetic.csv");
 
   stream.once("open", () => {
     stream.write(
@@ -94,7 +94,7 @@ function testRandomGenetic(totalOfTests = 100, maxMutations = 3, popSize = 10) {
 function testFromFile(maxTries = 5, maxFlips = 10) {
   const testFolder = "./cnf/";
 
-  const stream = fs.createWriteStream("results_files.csv");
+  const stream = fs.createWriteStream("./results/resultsFiles.csv");
 
   stream.once("open", () => {
     stream.write(

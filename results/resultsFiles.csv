@@ -1,0 +1,13 @@
+Filename,GSAT Execution time (ms),GSAT Solution,GSAT Flips,GSAT Tries,Genetic Execution time (ms),Genetic Solution,Genetic mutations
+aim-100-1_6-no-1.cnf,1.4316170066595078,"no satisfying assignment found",10,5,1.4938919991254807,no satisfying assignment found,5
+aim-50-1_6-yes1-4.cnf,0.4789990037679672,"no satisfying assignment found",10,5,0.4636950045824051,no satisfying assignment found,5
+bf0432-007.cnf,288.4229250103235,"no satisfying assignment found",10,5,293.46439599990845,no satisfying assignment found,5
+dubois20.cnf,1.065078005194664,"no satisfying assignment found",10,5,1.1326799988746643,no satisfying assignment found,5
+dubois21.cnf,1.1582989990711212,"no satisfying assignment found",10,5,1.2996010035276413,no satisfying assignment found,5
+dubois22.cnf,1.258200004696846,"no satisfying assignment found",10,5,1.293854996562004,no satisfying assignment found,5
+hole6.cnf,0.7408349961042404,"no satisfying assignment found",10,5,0.7113180011510849,no satisfying assignment found,5
+par8-1-c.cnf,1.5015490055084229,"no satisfying assignment found",10,5,1.4985219985246658,no satisfying assignment found,5
+quinn.cnf,0.04376700520515442,"no satisfying assignment found",10,5,0.06936900317668915,no satisfying assignment found,5
+simple.cnf,0.004498004913330078,"solution found",1,1,0.002232000231742859,solution found,0
+simple_v3_c2.cnf,0.002829998731613159,"solution found",0,1,0.0014640092849731445,solution found,0
+zebra_v155_c1135.cnf,15.577500000596046,"no satisfying assignment found",10,5,15.540052995085716,no satisfying assignment found,5
