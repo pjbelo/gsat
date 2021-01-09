@@ -102,6 +102,7 @@ function generateSolution(cnf) {
 //checks if it is a solution for given CNF
 function isSolution(solution, cnf) {
   let isExpressionTrue = true;
+  let trueClauses = 0;
 
   for (let i = 0; i < cnf.length; i++) {
     let isClauseTrue = false;
@@ -114,11 +115,13 @@ function isSolution(solution, cnf) {
         isClauseTrue = isClauseTrue || !solution[j];
       }
     }
-
+    if (isClauseTrue) {
+      trueClauses++;
+    }
     isExpressionTrue = isExpressionTrue && isClauseTrue;
   }
 
-  return isExpressionTrue;
+  return { isSolution: isExpressionTrue, trueClauses };
 }
 
 module.exports = {

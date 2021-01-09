@@ -13,7 +13,7 @@ const cnf = require("./cnf");
 const sat = require("./sat");
 
 //Generate tests for fisrt aproach of gsat with random clause size and clause number and write results in a csv file
-function testRandomGsat(totalOfTests = 10, maxTries = 3, maxFlips = 10) {
+function testRandomGsat(totalOfTests = 100, maxTries = 3, maxFlips = 10) {
   const stream = fs.createWriteStream("results.csv");
 
   stream.once("open", () => {
@@ -52,7 +52,7 @@ function testRandomGsat(totalOfTests = 10, maxTries = 3, maxFlips = 10) {
 }
 
 //Generate tests for genetic aproach with random clause size and clause number and write results in a csv file
-function testRandomGenetic(totalOfTests = 10, maxMutations = 3, popSize = 10) {
+function testRandomGenetic(totalOfTests = 100, maxMutations = 3, popSize = 10) {
   const stream = fs.createWriteStream("resultsGenetic.csv");
 
   stream.once("open", () => {

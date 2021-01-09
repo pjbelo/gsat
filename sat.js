@@ -10,7 +10,7 @@ function gsat(expression, maxTries, maxFlips) {
     let solution = cnf.generateSolution(expression);
     let index = 0;
     for (let j = 0; j < maxFlips; j++) {
-      if (cnf.isSolution(solution, expression)) {
+      if (cnf.isSolution(solution, expression).isSolution) {
         // return { solution, flips: j, tries: i + 1 };
         return { solution: "solution found", flips: j, tries: i + 1 };
       }
