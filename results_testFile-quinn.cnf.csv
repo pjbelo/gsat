@@ -1,0 +1,13 @@
+Filename: ./cnf/quinn.cnf 
+Expression: 1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1 
+GSAT Execution time (ms),GSAT Solution,GSAT Flips,GSAT Tries,Genetic Execution time (ms),Genetic Solution,Genetic mutations
+2.1856930032372475,no satisfying assignment found,500,5,2.231167994439602,solution found,2
+11.655974999070168,no satisfying assignment found,1000,6,0.25527799874544144,solution found,0
+13.423450000584126,no satisfying assignment found,1500,7,4.945973999798298,solution found,1
+25.71033799648285,no satisfying assignment found,2000,8,0.8557190001010895,solution found,0
+17.56038700044155,no satisfying assignment found,2500,9,47.50523799657822,solution found,6
+21.62109900265932,no satisfying assignment found,3000,10,25.052781000733376,solution found,2
+28.930263996124268,no satisfying assignment found,3500,11,6.041021004319191,solution found,1
+36.37540999799967,no satisfying assignment found,4000,12,5.236374996602535,solution found,0
+43.79239799827337,no satisfying assignment found,4500,13,0.09223400056362152,solution found,0
+65.40878800302744,no satisfying assignment found,5000,14,21.079041995108128,solution found,2
